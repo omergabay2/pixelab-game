@@ -380,7 +380,7 @@ class ShootingGame {
         // Handle game over logic
         this.isGameOver = true;
         clearInterval(this.gameInterval);
-        alert(`Game Over! Your score is ${this.score}`);
+        alert(`המשחק נגמר! הניקוד שלך הוא: ${this.score}`);
         location.reload(); // Reload the page to restart the game
     }
 }
