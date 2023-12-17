@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>משחק פיקסלאב</title>
+</head>
+<body>
+    <div id="menu">
+        <h1>משחק יריות פיקסלאב</h1>
+        <button id="startButton">התחל משחק</button>
+    </div>
+
+    <div id="gameContainer" class="hidden">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="infoPanel">
+            <div id="stats">
+                <div id="score">ניקוד: <span id="scoreValue">0</span></div>
+                <div id="health">חיים: <span id="healthValue">100</span></div>
+                <div id="money">כסף: $<span id="moneyValue">0</span></div>
+                <div id="weapon">רמת הנשק: <span id="weaponValue">0</span></div>
+                <div id="level">שלב: <span id="levelValue">1</span></div>
+            </div>
+            <button id="buyWeaponButton">שדרוג הנשק</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+    <script src="shootingGame.js"></script>
+
+</body>
+</html>

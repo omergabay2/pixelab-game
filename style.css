@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#gameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+canvas {
+    border: 1px solid #000;
+}
+
+#infoPanel {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+}
+
+#startGameMenu {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+#stats div {
+    text-align: center;
+    margin: 0 10px; /* Add margin to create space between stats */
+}
+
+#score, #health, #money ,#level ,#weapon {
+    font-size: 18px;
+}
+
+#weapon {
+    color: #c6861f;
+}
+
+#level {
+    color: rgb(30, 110, 128); /* Gold color for score */
+}
+
+#score {
+    color: #ffd700; /* Gold color for score */
+}
+
+#health {
+    color: #ff0000; /* Red color for health */
+}
+
+#money {
+    color: #00ff00; /* Green color for money */
+}
