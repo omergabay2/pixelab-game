@@ -208,7 +208,6 @@ class ShootingGame {
         if (!this.isGameOver && this.money >= this.player.weapon * 20) {
             this.money -= this.player.weapon * 20;
             this.player.weapon++;
-
         }
     }
 
