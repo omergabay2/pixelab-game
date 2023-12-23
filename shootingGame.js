@@ -31,34 +31,34 @@ class ShootingGame {
 
         this.levels = [
             { enemyCount: 5, enemySpeed: 2, enemyHealth: 20 },
-            { enemyCount: 8, enemySpeed: 3, enemyHealth: 30 },
-            { enemyCount: 12, enemySpeed: 4, enemyHealth: 40 },
-            { enemyCount: 15, enemySpeed: 5, enemyHealth: 50 },
-            { enemyCount: 18, enemySpeed: 6, enemyHealth: 60 },
-            { enemyCount: 20, enemySpeed: 7, enemyHealth: 70 },
-            { enemyCount: 22, enemySpeed: 8, enemyHealth: 80 },
-            { enemyCount: 25, enemySpeed: 9, enemyHealth: 90 },
-            { enemyCount: 28, enemySpeed: 10, enemyHealth: 100 },
-            { enemyCount: 30, enemySpeed: 11, enemyHealth: 110 },
-            { enemyCount: 32, enemySpeed: 12, enemyHealth: 120 },
-            { enemyCount: 35, enemySpeed: 13, enemyHealth: 130 },
-            { enemyCount: 38, enemySpeed: 14, enemyHealth: 140 },
-            { enemyCount: 40, enemySpeed: 15, enemyHealth: 150 },
-            { enemyCount: 42, enemySpeed: 16, enemyHealth: 160 },
-            { enemyCount: 45, enemySpeed: 17, enemyHealth: 170 },
-            { enemyCount: 48, enemySpeed: 18, enemyHealth: 180 },
-            { enemyCount: 50, enemySpeed: 19, enemyHealth: 190 },
-            { enemyCount: 52, enemySpeed: 20, enemyHealth: 200 },
-            { enemyCount: 55, enemySpeed: 21, enemyHealth: 210 },
-            { enemyCount: 58, enemySpeed: 22, enemyHealth: 220 },
-            { enemyCount: 60, enemySpeed: 23, enemyHealth: 230 },
-            { enemyCount: 62, enemySpeed: 24, enemyHealth: 240 },
-            { enemyCount: 65, enemySpeed: 25, enemyHealth: 250 },
-            { enemyCount: 68, enemySpeed: 26, enemyHealth: 260 },
-            { enemyCount: 70, enemySpeed: 27, enemyHealth: 270 },
-            { enemyCount: 72, enemySpeed: 28, enemyHealth: 280 },
-            { enemyCount: 75, enemySpeed: 29, enemyHealth: 290 },
-            { enemyCount: 78, enemySpeed: 30, enemyHealth: 300 },
+            { enemyCount: 8, enemySpeed: 2, enemyHealth: 30 },
+            { enemyCount: 12, enemySpeed: 3, enemyHealth: 40 },
+            { enemyCount: 15, enemySpeed: 3, enemyHealth: 50 },
+            { enemyCount: 18, enemySpeed: 4, enemyHealth: 60 },
+            { enemyCount: 20, enemySpeed: 4, enemyHealth: 70 },
+            { enemyCount: 22, enemySpeed: 5, enemyHealth: 80 },
+            { enemyCount: 25, enemySpeed: 5, enemyHealth: 90 },
+            { enemyCount: 28, enemySpeed: 6, enemyHealth: 100 },
+            { enemyCount: 30, enemySpeed: 6, enemyHealth: 110 },
+            { enemyCount: 32, enemySpeed: 7, enemyHealth: 120 },
+            { enemyCount: 35, enemySpeed: 7, enemyHealth: 130 },
+            { enemyCount: 38, enemySpeed: 8, enemyHealth: 140 },
+            { enemyCount: 40, enemySpeed: 8, enemyHealth: 150 },
+            { enemyCount: 42, enemySpeed: 9, enemyHealth: 160 },
+            { enemyCount: 45, enemySpeed: 9, enemyHealth: 170 },
+            { enemyCount: 48, enemySpeed: 10, enemyHealth: 180 },
+            { enemyCount: 50, enemySpeed: 10, enemyHealth: 190 },
+            { enemyCount: 52, enemySpeed: 11, enemyHealth: 200 },
+            { enemyCount: 55, enemySpeed: 11, enemyHealth: 210 },
+            { enemyCount: 58, enemySpeed: 12, enemyHealth: 220 },
+            { enemyCount: 60, enemySpeed: 12, enemyHealth: 230 },
+            { enemyCount: 62, enemySpeed: 13, enemyHealth: 240 },
+            { enemyCount: 65, enemySpeed: 13, enemyHealth: 250 },
+            { enemyCount: 68, enemySpeed: 14, enemyHealth: 260 },
+            { enemyCount: 70, enemySpeed: 14, enemyHealth: 270 },
+            { enemyCount: 72, enemySpeed: 15, enemyHealth: 280 },
+            { enemyCount: 75, enemySpeed: 15, enemyHealth: 290 },
+            { enemyCount: 78, enemySpeed: 16, enemyHealth: 300 },
         ];
 
 
@@ -141,7 +141,7 @@ class ShootingGame {
 
             if (this.currentLevel < this.levels.length) {
                 // Move to the next level if available
-                this.money += 20; // Reward for completing the level
+                this.money += 30; // Reward for completing the level
                 this.startLevel();
             } else {
                 // Player completed all levels
@@ -197,7 +197,7 @@ class ShootingGame {
                 y: this.player.y - 10,
                 width: 10,
                 height: 10,
-                damage: 2 * this.player.weapon,
+                damage: 5 * this.player.weapon,
             };
 
             this.bullets.push(bullet);
@@ -205,8 +205,8 @@ class ShootingGame {
     }
 
     buyWeapon() {
-        if (!this.isGameOver && this.money >= this.player.weapon * 20) {
-            this.money -= this.player.weapon * 20;
+        if (!this.isGameOver && this.money >= this.player.weapon * 10) {
+            this.money -= this.player.weapon * 10;
             this.player.weapon++;
         }
     }
