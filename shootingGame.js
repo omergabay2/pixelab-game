@@ -20,8 +20,23 @@ class ShootingGame {
             money: 0,
             weapon: 1,
         };
+
         this.enemyTypes = ['basic', 'fast', 'tank'];
-        this.enemyImage = new Image();
+        this.enemyImages = {
+            basic: new Image(),
+            fast: new Image(),
+            tank: new Image(),
+        };
+        this.enemyImages.basic.src = 'basic.png';
+        this.enemyImages.fast.src = 'fast.png';
+        this.enemyImages.tank.src = 'tank.png';
+
+        this.waveNumber = 1;
+        this.enemiesRemaining = 0;
+        document.getElementById('waveValue').textContent = this.waveNumber;
+        document.getElementById('enemiesRemainingValue').textContent = this.enemiesRemaining;
+        
+        
 
         this.loadImages(); // Load player and enemy images
 
@@ -83,8 +98,9 @@ class ShootingGame {
     loadImages() {
         // Load player image
         this.player.image.src = 'player.png'; // Replace with the actual file path
-        this.enemyImage.src = 'basic.png';
-
+        const enemyType = this.enemyTypes[Math.floor(Math.random() * this.enemyTypes.length)];
+        const enemyImage = this.enemyImages[enemyType];
+        enemyImage.src = `${enemyType}.png`;
     }
 
     updateGameElementsSize() {
@@ -115,17 +131,19 @@ class ShootingGame {
 
     spawnEnemy() {
         const enemyType = this.enemyTypes[Math.floor(Math.random() * this.enemyTypes.length)];
-
+        const enemyImage = this.enemyImages[enemyType];
         const enemy = {
             x: Math.random() * (this.canvas.width - 30),
             y: 0,
             width: 30,
             height: 30,
             type: enemyType,
+            image: enemyImage,
             speed: this.levels[this.currentLevel].enemySpeed + Math.random() * 2,
             health: this.levels[this.currentLevel].enemyHealth,
             damage: 40,
         };
+        
 
 
         this.enemies.push(enemy);
@@ -137,7 +155,7 @@ class ShootingGame {
         if (this.isGamePaused) {
             clearInterval(this.gameInterval);
         } else {
-            this.gameInterval = setInterval(() => this.gameLoop(), 16);
+            this.gameInterval = setInterval(() => this.gameLoop(this.ctx), 16);
         }
     }
 
@@ -157,7 +175,7 @@ class ShootingGame {
         }
     }
 
-    gameLoop() {
+    gameLoop(ctx) {
         if (!this.isGameOver && !this.isGamePaused) {
             this.drawBackground();
             this.drawPlayer();
@@ -168,7 +186,7 @@ class ShootingGame {
             this.drawMoney();
             this.drawWeapon();
             this.drawLevel();
-            this.moveBullets();
+            this.moveBullets(ctx);
             this.moveEnemies();
             this.movePowerUps();
             this.drawBullets();
@@ -283,11 +301,19 @@ class ShootingGame {
                 this.player.y + this.player.height > enemy.y
             ) {
                 this.player.health -= enemy.damage;
-    
+        
                 if (this.player.health <= 0) {
                     this.gameOver();
                 }
-    
+        
+                if (enemy.type === 'basic') {
+                    // Handle basic enemy behavior
+                } else if (enemy.type === 'fast') {
+                    // Handle fast enemy behavior
+                } else if (enemy.type === 'tank') {
+                    // Handle tank enemy behavior
+                }
+        
                 this.enemies = this.enemies.filter(e => e !== enemy);
             }
         });
@@ -354,16 +380,16 @@ class ShootingGame {
     }
     
 
-    drawBullets() {
+    drawBullets(ctx) {
         // Draw bullets on the canvas with animation
-        this.ctx.fillStyle = 'white';
+        ctx.fillStyle = 'white';
     
         this.bullets.forEach(bullet => {
             // Add a simple animation effect for bullets
             bullet.y -= 10;
     
             // Draw the bullet as a rectangle
-            this.ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
         });
         this.bullets = this.bullets.filter(bullet => bullet.y > 0);
     }
@@ -375,7 +401,7 @@ class ShootingGame {
 
     drawEnemies() {
         this.enemies.forEach(enemy => {
-            this.ctx.drawImage(this.enemyImage, enemy.x, enemy.y, enemy.width, enemy.height);
+            this.ctx.drawImage(enemy.image, enemy.x, enemy.y, enemy.width, enemy.height);
         });
     }
     drawLevel() {
@@ -386,7 +412,18 @@ class ShootingGame {
         // Handle game over logic
         this.isGameOver = true;
         clearInterval(this.gameInterval);
-        alert(`המשחק נגמר! הניקוד שלך הוא: ${this.score}`);
-        location.reload(); // Reload the page to restart the game
+    
+        // Display game over screen
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        gameOverScreen.style.display = 'block';
+    
+        // Show final score
+        document.getElementById('finalScore').textContent = `Your Score: ${this.score}`;
+    
+        // Restart button
+        const restartButton = document.getElementById('restartButton');
+        restartButton.addEventListener('click', () => {
+            location.reload(); // Reload the page to restart the game
+        });
     }
 }

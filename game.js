@@ -1,5 +1,5 @@
 // script.js
-let game,canvas;
+let game, canvas; // Declare canvas as a global variable
 
 function resizeCanvas() {
     if (!canvas) return; // Check if canvas is initialized
@@ -27,7 +27,7 @@ function resizeCanvas() {
 }
 
 window.onload = function () {
-    const canvas = document.getElementById('gameCanvas');
+    canvas = document.getElementById('gameCanvas'); // Assign the global canvas variable
     const ctx = canvas.getContext('2d');
     const startButton = document.getElementById('startButton');
     const gameContainer = document.getElementById('gameContainer');
@@ -39,7 +39,6 @@ window.onload = function () {
     const buyWeaponButton = document.getElementById('buyWeaponButton');
     resizeCanvas();
 
-
     startButton.addEventListener('click', () => {
         gameContainer.classList.remove('hidden');
         startButton.style.display = 'none'; // Hide the start button
@@ -47,7 +46,6 @@ window.onload = function () {
         game = new ShootingGame(canvas, ctx, infoPanel, levelSpan, scoreSpan, moneySpan, weaponSpan, buyWeaponButton);
         resizeCanvas(); // Resize canvas when the game starts
         game.start();
-
     });
 };
 
