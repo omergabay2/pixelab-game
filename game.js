@@ -2,11 +2,16 @@
 let game,canvas;
 
 function resizeCanvas() {
+    if (!canvas) return; // Check if canvas is initialized
+
+    // Get the viewport dimensions
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const aspectRatio = 4 / 3; // Adjust this based on your game's design
 
-    // Adjust the canvas size while maintaining the aspect ratio
+    // Define the desired aspect ratio
+    const aspectRatio = 4 / 3; // Example aspect ratio, adjust as needed
+
+    // Adjust canvas size while maintaining the aspect ratio
     if (width / height > aspectRatio) {
         canvas.width = height * aspectRatio;
         canvas.height = height;
@@ -15,12 +20,11 @@ function resizeCanvas() {
         canvas.height = width / aspectRatio;
     }
 
-    // Update game elements if the game has started
+    // Update game elements based on the new canvas size
     if (game) {
         game.updateGameElementsSize();
     }
 }
-
 
 window.onload = function () {
     const canvas = document.getElementById('gameCanvas');
@@ -40,8 +44,8 @@ window.onload = function () {
         gameContainer.classList.remove('hidden');
         startButton.style.display = 'none'; // Hide the start button
         menu.style.display = 'none'; // Hide the game title
-        resizeCanvas(); // Resize canvas when the game starts
         game = new ShootingGame(canvas, ctx, infoPanel, levelSpan, scoreSpan, moneySpan, weaponSpan, buyWeaponButton);
+        resizeCanvas(); // Resize canvas when the game starts
         game.start();
 
     });

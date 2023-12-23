@@ -187,13 +187,12 @@ class ShootingGame {
     movePlayer(event) {
         if (!this.isGameOver) {
             const rect = this.canvas.getBoundingClientRect();
-            this.player.x = event.clientX - rect.left - this.player.width / 2;
+            const scaleX = this.canvas.width / rect.width; // Scale factor for X
 
-            if (this.player.x < 0) {
-                this.player.x = 0;
-            } else if (this.player.x > this.canvas.width - this.player.width) {
-                this.player.x = this.canvas.width - this.player.width;
-            }
+            this.player.x = (event.clientX - rect.left) * scaleX - this.player.width / 2;
+
+            this.player.x = Math.max(0, Math.min(this.player.x, this.canvas.width - this.player.width));
+
         }
     }
 
