@@ -87,7 +87,14 @@ class ShootingGame {
 
     }
 
-
+    updateGameElementsSize() {
+        // Update player size and position
+        this.player.width = this.canvas.width * 0.05; // Example scaling
+        this.player.height = this.canvas.height * 0.05;
+        this.player.x = this.canvas.width / 2;
+        this.player.y = this.canvas.height - this.player.height - 10;
+    }
+    
     start() {
         this.gameInterval = setInterval(() => {
             this.gameLoop();

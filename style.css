@@ -115,3 +115,9 @@ h1 {
 #money {
     color: #00ff00; /* Green color for money */
 }
+
+#gameContainer {
+    max-width: 90vw;
+    max-height: 90vh;
+    /* Other styles */
+}
